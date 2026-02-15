@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Diana ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="envelope" class="envelope-section">
+        <div class="card">
+            <div class="icon">✉️</div>
+            <h2>Para: Diana</h2>
+            <p>Toca para abrir tu detalle</p>
+        </div>
+    </div>
+
+    <div id="flower-screen" class="flower-screen hidden">
+        <h1 class="main-title">Para la flor más bella del jardín</h1>
+        <p class="hint">Toca los pétalos para leer mis mensajes</p>
+
+        <div class="flower-container">
+            <div class="flower-center">
+                <span class="center-text">
+                    💖 Te quiero muchísimo Diana 💖<br>
+  Eres mi lugar favorito en el mundo
+                </span>
+            </div>
+
+            <div id="petals-layer"></div>
+        </div>
+        
+    </div>
+
+    <div id="overlay" class="overlay hidden"></div>
+
+    <audio id="bg-music" loop><source src="assets/musica.mp3" type="audio/mpeg"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

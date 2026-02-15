@@ -1,0 +1,248 @@
+:root {
+    --primary-pink: #ff4d8d;
+    --soft-pink: #ffb7c5;
+    --gold: #ffcc33;
+    --bg-color: #fff0f3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0; padding: 0;
+    width: 100vw; height: 100vh;
+    background-color: var(--bg-color);
+    font-family: 'Montserrat', sans-serif;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+}
+
+.hidden { display: none !important; }
+
+/* --- SECCIÓN SOBRE --- */
+.envelope-section { cursor: pointer; animation: float 3s ease-in-out infinite; }
+.card {
+    background: white; padding: 40px; border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(255, 77, 141, 0.15);
+    text-align: center; border: 3px solid white;
+}
+.icon { font-size: 60px; margin-bottom: 10px; }
+h2 { font-family: 'Dancing Script', cursive; color: var(--primary-pink); font-size: 3em; margin: 0; }
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+/* --- SECCIÓN FLOR --- */
+.flower-screen {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-pink); font-size: clamp(1.5rem, 5vw, 3rem);
+    margin-bottom: 1px; text-align: center;
+}
+
+.center-text {
+  font-family: 'Dancing Script', cursive;
+  color: #664d00;
+
+  font-size: 1.2rem;
+  line-height: 1.2;
+
+  padding: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.flower-container {
+    position: relative; width: 300px; height: 300px;
+    display: flex; justify-content: center; align-items: center; overflow: visible;
+}
+
+/* El Centro Dorado */
+.flower-center {
+  position: absolute;
+
+  top: 93%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+
+  width: 160px;
+  height: 160px;
+
+  background: var(--gold);
+  border-radius: 50%;
+
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border: 4px solid #fff;
+
+  cursor: pointer;
+  transition: transform 0.25s ease;  
+}
+
+.flower-center:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.flower-center.active-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.05);
+
+  width: min(92vw, 520px);
+  height: auto;
+  padding: 40px;
+
+  background: white;
+  border-radius: 24px;
+
+  z-index: 99999;
+
+  box-shadow: 0 40px 120px rgba(0,0,0,0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(26px, 3vw, 34px);
+}
+
+.flower-center span {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.flower-center.active-center span {
+  transform: scale(1.6);
+}
+
+.spark {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff, pink);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+  z-index: 999999;
+
+  animation: explode 1.2s ease forwards;
+}
+
+@keyframes explode {
+  from {
+    transform: translate(0,0) scale(0.5);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--x), var(--y)) scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Pétalos Individuales */
+.petal {
+    position: absolute; width: 60px; height: 130px;
+    background: linear-gradient(to top, var(--primary-pink), var(--soft-pink));
+    border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%;
+    transform-origin: bottom center;
+    cursor: pointer; z-index: 100;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.petal:hover { filter: brightness(1.1); }
+
+/* --- EL MENSAJE ABIERTO (EL ZOOM) --- */
+.petal.active {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(1) !important;
+
+  width: min(92vw, 520px);
+  padding: 34px;
+
+  background: #ffffff;
+  border-radius: 22px;
+
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.45),
+    0 0 0 2px rgba(255,255,255,0.8);
+
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  animation: openCard 0.35s ease;
+}
+
+/* El texto dentro del pétalo abierto */
+.petal span {
+  display: none;
+  width: 100%;
+}
+
+.petal.active span {
+  display: block;
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #222;
+  text-align: center;
+}
+
+/* Overlay / Fondo */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+
+  z-index: 150;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.hint { margin-top: 10px; color: #b07d88; font-size: 0.9em; font-weight: 600; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes openCard {
+  from {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
